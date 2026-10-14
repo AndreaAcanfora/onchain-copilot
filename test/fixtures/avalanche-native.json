@@ -1,0 +1,108 @@
+{
+ "chain": "avalanche",
+ "hash": "0x2ace6d7be2bfefa95284d7be19a03466621bfecb47f005f86a38f96e31ce227b",
+ "rpc": {
+  "[\"eth_getTransactionByHash\",[\"0x2ace6d7be2bfefa95284d7be19a03466621bfecb47f005f86a38f96e31ce227b\"]]": {
+   "blockHash": "0xea03c5bfe304fcbb10c5af74b11c2006a6d86d3a1214599b6378f3da3b7fc7af",
+   "blockNumber": "0x5cfde7e",
+   "from": "0x5f451d56c4f177c32068f5692e932f8d12bc572b",
+   "gas": "0x5208",
+   "gasPrice": "0x18b989540",
+   "maxFeePerGas": "0x1d61a11c0",
+   "maxPriorityFeePerGas": "0x6192a340",
+   "hash": "0x2ace6d7be2bfefa95284d7be19a03466621bfecb47f005f86a38f96e31ce227b",
+   "input": "0x",
+   "nonce": "0x3e748",
+   "to": "0x7bc8b355ea0a48aee3c0201a63eab3b79ebe7ba6",
+   "transactionIndex": "0x3",
+   "value": "0x116db81521600",
+   "type": "0x2",
+   "accessList": [],
+   "chainId": "0xa86a",
+   "v": "0x1",
+   "r": "0x4a54604e1efd5daaf240ae38ae843c5f363d13dfd6175408f769b020d28b6587",
+   "s": "0x7d9be10abfe37ba3a50ca494ed37a83f1766c5be197bdfc5f17ad48300656357",
+   "yParity": "0x1"
+  },
+  "[\"eth_getTransactionReceipt\",[\"0x2ace6d7be2bfefa95284d7be19a03466621bfecb47f005f86a38f96e31ce227b\"]]": {
+   "blockHash": "0xea03c5bfe304fcbb10c5af74b11c2006a6d86d3a1214599b6378f3da3b7fc7af",
+   "blockNumber": "0x5cfde7e",
+   "contractAddress": null,
+   "cumulativeGasUsed": "0x7d3eb",
+   "effectiveGasPrice": "0x18b989540",
+   "from": "0x5f451d56c4f177c32068f5692e932f8d12bc572b",
+   "gasUsed": "0x5208",
+   "logs": [],
+   "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+   "status": "0x1",
+   "to": "0x7bc8b355ea0a48aee3c0201a63eab3b79ebe7ba6",
+   "transactionHash": "0x2ace6d7be2bfefa95284d7be19a03466621bfecb47f005f86a38f96e31ce227b",
+   "transactionIndex": "0x3",
+   "type": "0x2"
+  },
+  "[\"eth_getBlockByNumber\",[\"0x5cfde7e\",false]]": {
+   "baseFeePerGas": "0x12a05f200",
+   "blobGasUsed": "0x0",
+   "blockExtraData": "0x",
+   "blockGasCost": "0x0",
+   "difficulty": "0x1",
+   "excessBlobGas": "0x0",
+   "extDataGasUsed": "0x0",
+   "extDataHash": "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
+   "extraData": "0x000000000000",
+   "gasLimit": "0x4c4b400",
+   "gasUsed": "0x1bce16",
+   "hash": "0xea03c5bfe304fcbb10c5af74b11c2006a6d86d3a1214599b6378f3da3b7fc7af",
+   "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+   "minDelayExcess": "0x69ebd2",
+   "minPriceExponent": "0x80e08b2f603136cc",
+   "miner": "0x0100000000000000000000000000000000000000",
+   "mixHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+   "nonce": "0x0000000000000000",
+   "number": "0x5cfde7e",
+   "parentBeaconBlockRoot": "0x0000000000000000000000000000000000000000000000000000000000000000",
+   "parentHash": "0x2ec5a4ea3b7d4961b4f92ae4821cb7a1ed0306cf3f8d9d3d303838d2b75b8176",
+   "receiptsRoot": "0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421",
+   "settledExcess": "0x1cf3e0874",
+   "settledGasNumerator": "0x328598",
+   "settledGasUnix": "0x6acf29e3",
+   "settledHeight": "0x5cfde77",
+   "sha3Uncles": "0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347",
+   "size": "0xe86",
+   "stateRoot": "0xa101cd999bf9735d9e5c4cce81da8185f1b772d5488bae81fce315d884bb61a4",
+   "targetExponent": "0x2c5c860",
+   "timestamp": "0x6acf29ec",
+   "timestampMilliseconds": "0x1a1393bc3d5",
+   "totalDifficulty": "0x0",
+   "transactions": [
+    "0xc5dd567c8075526b159190041fb236ba0e71f80c3a8ddf8d31fab24bac61f7be",
+    "0xaba9dec4b820022e7ba9e9c20d296740e8a2ee4c2bc2c112f69560305ef09316",
+    "0x049ee20f2ea5131cbfdd3b6df008d2dd8dcb2b209f2393f2d6b4b471896f1f5a",
+    "0x2ace6d7be2bfefa95284d7be19a03466621bfecb47f005f86a38f96e31ce227b",
+    "0xf97bb9e6c0805fe342fc87455e0c3b9bf067314ae43320e690a041c669f4a34f",
+    "0x00dfb0430ebd7fd721177a20820924bb8d6cdf4d0b3c14685c4246bcbe42a1dd",
+    "0xd38c4086489c3427da22fde5f3bd14a337d9e82bef6104b8511f030599c669ac"
+   ],
+   "transactionsRoot": "0xe5699a5b5122a266355debeae26dc8f17c4cf2178529ceb21a13dc114938e517",
+   "uncles": []
+  }
+ },
+ "ensRpc": {},
+ "http": {
+  "https://sourcify.dev/server/v2/contract/43114/0x7bc8b355ea0a48aee3c0201a63eab3b79ebe7ba6?fields=abi,compilation,proxyResolution": {
+   "error": "Error: 404 https://sourcify.dev/server/v2/contract/43114/0x7bc8b355ea0a48aee3c0201a63eab3b79ebe7ba6?fields=abi,compilation,proxyResolution"
+  },
+  "https://coins.llama.fi/prices/historical/1791961580/coingecko:avalanche-2": {
+   "body": {
+    "coins": {
+     "coingecko:avalanche-2": {
+      "symbol": "AVAX",
+      "price": 10.202063533244363,
+      "timestamp": 1791961564,
+      "confidence": 0.99
+     }
+    }
+   }
+  }
+ }
+}

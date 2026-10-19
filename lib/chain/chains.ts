@@ -3,6 +3,8 @@ import { arbitrum, avalanche, base, mainnet, type Chain } from "viem/chains";
 export const CHAIN_KEYS = ["ethereum", "base", "arbitrum", "avalanche"] as const;
 export type ChainKey = (typeof CHAIN_KEYS)[number];
 
+export const TX_HASH = /^0x[0-9a-fA-F]{64}$/;
+
 export interface ChainConfig {
   key: ChainKey;
   name: string;

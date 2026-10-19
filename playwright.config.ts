@@ -15,6 +15,7 @@ export default defineConfig({
   ],
   webServer: {
     command: `pnpm exec next build && pnpm exec next start -p ${PORT}`,
+    env: { E2E_FIXTURES: "1" },
     url: `http://localhost:${PORT}`,
     timeout: 240_000,
     reuseExistingServer: !process.env.CI,

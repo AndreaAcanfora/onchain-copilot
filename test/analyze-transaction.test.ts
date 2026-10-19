@@ -5,6 +5,7 @@ import { analyzeTransaction } from "../lib/chain/analyze-transaction";
 import type { ChainDeps } from "../lib/chain/deps";
 import type { Flow, TxFacts } from "../lib/chain/facts";
 import { analyzeFixture, loadRecording } from "./fixtures";
+import { replayDeps } from "../lib/chain/recording";
 
 const flowOf = (facts: TxFacts, address: string, asset: string): Flow | undefined =>
   facts.flows.find((f) => f.address.address.toLowerCase() === address.toLowerCase() && f.asset === asset);
@@ -130,5 +131,30 @@ describe("analyzeTransaction edge states", () => {
       s: "0x1",
     };
     expect(await analyzeTransaction(stubDeps(pendingTx), "ethereum", hash)).toEqual({ kind: "pending" });
+  });
+});
+
+describe("analyzeTransaction against a flaky load-balanced RPC", () => {
+  it("retries a missing receipt for a mined transaction instead of failing", async () => {
+    const recording = loadRecording("ethereum-usdt-transfer");
+    const deps = replayDeps(recording);
+    let receiptCalls = 0;
+    const flaky = createPublicClient({
+      chain: mainnet,
+      transport: custom(
+        {
+          async request(args: { method: string; params?: unknown }) {
+            // Some nodes behind a public endpoint answer null for a receipt they should have.
+            if (args.method === "eth_getTransactionReceipt" && receiptCalls++ === 0) return null;
+            return deps.client.request(args as never);
+          },
+        },
+        { retryCount: 0 },
+      ),
+    }) as PublicClient;
+
+    const result = await analyzeTransaction({ ...deps, client: flaky }, "ethereum", recording.hash);
+    expect(result.kind).toBe("ok");
+    expect(receiptCalls).toBe(2);
   });
 });

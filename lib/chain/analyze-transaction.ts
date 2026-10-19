@@ -1,4 +1,13 @@
-import { formatUnits, getAddress, TransactionNotFoundError, type Address, type Hex, type Log } from "viem";
+import {
+  formatUnits,
+  getAddress,
+  TransactionNotFoundError,
+  TransactionReceiptNotFoundError,
+  type Address,
+  type Hex,
+  type Log,
+  type TransactionReceipt,
+} from "viem";
 import { fetchVerifiedContract, lookupSignatures, type VerifiedContract } from "./abi-sources";
 import { CHAINS, type ChainConfig, type ChainKey } from "./chains";
 import { decodeCall, decodeLog, type DecodedLog } from "./decode";
@@ -12,7 +21,25 @@ const ZERO = "0x0000000000000000000000000000000000000000";
 /** Sourcify lookups for emitters whose events no standard ABI decodes. Bounded so a 300-log tx stays fast. */
 const MAX_EMITTER_LOOKUPS = 8;
 
+const RECEIPT_ATTEMPTS = 3;
+
 const lower = (address: string) => address.toLowerCase();
+
+/**
+ * A mined transaction always has a receipt, so "not found" here is a node lying:
+ * public endpoints load-balance across nodes and some answer null. viem's fallback
+ * transport treats null as an answer, so the retry has to live here.
+ */
+async function getMinedReceipt(deps: ChainDeps, hash: Hex): Promise<TransactionReceipt> {
+  for (let attempt = 1; ; attempt++) {
+    try {
+      return await deps.client.getTransactionReceipt({ hash });
+    } catch (error) {
+      if (!(error instanceof TransactionReceiptNotFoundError) || attempt >= RECEIPT_ATTEMPTS) throw error;
+      await new Promise((resolve) => setTimeout(resolve, 150 * attempt));
+    }
+  }
+}
 const unique = <T>(items: T[]) => [...new Set(items)];
 
 function amount(raw: bigint, decimals: number, symbol: string, price: number | null): Amount {
@@ -179,7 +206,7 @@ export async function analyzeTransaction(deps: ChainDeps, key: ChainKey, hash: H
   if (tx.blockNumber === null) return { kind: "pending" };
 
   const [receipt, block] = await Promise.all([
-    client.getTransactionReceipt({ hash }),
+    getMinedReceipt(deps, hash),
     client.getBlock({ blockNumber: tx.blockNumber }),
   ]);
   const timestamp = Number(block.timestamp);

@@ -24,7 +24,12 @@ describe("formatToken", () => {
     expect(formatToken(6140.123456, "USDC")).toBe("6,140.1235 USDC");
   });
 
-  it("never rounds a tiny non-zero amount to zero", () => {
-    expect(formatToken(0.0000001, "ETH")).toBe("<0.0001 ETH");
+  it("keeps four significant digits below one, so a fee never rounds to zero", () => {
+    expect(formatToken(0.000016466419569136, "ETH")).toBe("0.00001647 ETH");
+    expect(formatToken(0.02301098, "ETH")).toBe("0.02301 ETH");
+  });
+
+  it("formats zero plainly", () => {
+    expect(formatToken(0, "ETH")).toBe("0 ETH");
   });
 });
